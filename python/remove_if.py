@@ -12,11 +12,11 @@ class IfElseEvaluator(ast.NodeTransformer):
             
             if (isinstance(left, ast.Name) and left.id == 'flag' and 
                 isinstance(op, ast.Eq) and 
-                isinstance(right, ast.Str) and right.s == self.flag_value):
+                isinstance(right, ast.Constant) and right.s == self.flag_value):
                 return node.body
             elif (isinstance(right, ast.Name) and right.id == 'flag' and 
                   isinstance(op, ast.Eq) and 
-                  isinstance(left, ast.Str) and left.s == self.flag_value):
+                  isinstance(left, ast.Constant) and left.s == self.flag_value):
                 return node.body
         
         return node.orelse
